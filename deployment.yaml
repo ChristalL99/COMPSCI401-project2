@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: us-predictor-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: us-predictor
+  template:
+    metadata:
+      labels:
+        app: us-predictor
+    spec:
+      containers:
+      - name: us-predictor
+        image: quay.io/christal09/us-predictor:0.1
+        ports:
+        - containerPort: 5006
