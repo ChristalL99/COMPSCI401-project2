@@ -51,8 +51,8 @@ def input_text():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5006, debug=True)  // to allow the flask application to accept requests from all the interfaces, added host = '0.0.0.0' here
-
+    app.run(host="0.0.0.0", port=5006, debug=True)
+# to allow the flask application to accept requests from all the interfaces, added host = '0.0.0.0' here
 
 
 # wget --server-response --output-document response.out --header='Content-Type: application/json' --post-data '{"text": "#covid19 new york"}' http://localhost:5006/api/american
