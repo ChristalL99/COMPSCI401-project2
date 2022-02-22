@@ -1,8 +1,6 @@
 import pandas as pd
 import urllib.request
 from flask import Flask, jsonify, request, redirect, url_for, render_template
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.naive_bayes import MultinomialNB
 from github import Github
 import pickle
 
