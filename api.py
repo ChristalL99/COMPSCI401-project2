@@ -13,7 +13,7 @@ app = Flask(__name__)
 github = Github()
 repo = github.get_repo("ChristalL99/COMPSCI401-project2")
 model_commits = repo.get_commits(path = './text_clf.pickle')
-code_commits = repo.get_commits(path = './main/api.py')
+code_commits = repo.get_commits(path = './api.py')
 
 version = str(code_commits.totalCount)
 model_date = str(pd.to_datetime(model_commits[0].commit.committer.date))
