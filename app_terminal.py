@@ -1,6 +1,6 @@
 import pandas as pd
 import urllib.request
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for, render_template
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from github import Github
@@ -32,6 +32,25 @@ def predict():
     text = [content['text']]
     result = model.predict(text)[0]
     return jsonify(is_american = str(result), version = version, model_date = model_date)
+
+@app.route('/')
+def index(): 
+    return "Index Page"
+
+@app.route('/success/<text>')
+def success(text):
+    text = [text]
+    result = model.predict(text)[0]
+    return jsonify(is_american = int(result), version = version, model_date = model_date)
+
+@app.route('/api/submit', methods=['POST', 'GET'])
+def input_text():
+    if request.method == 'POST':
+        input_text = request.form['in']
+        return redirect(url_for('success', text = input_text))
+
+    return render_template('app.html')
+
 
 if __name__ == '__main__':
     app.run(port=5006, debug=True)
