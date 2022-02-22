@@ -20,7 +20,7 @@ version = str(code_commits.totalCount)
 model_date = str(pd.to_datetime(model_commits[0].commit.committer.date))
 
 # Load the pipeline
-model_url = 'https://github.com/ChristalL99/COMPSCI401-project2/blob/main/text_clf.pickle'
+model_url = 'https://github.com/ChristalL99/COMPSCI401-project2/blob/main/text_clf.pickle?raw=True'
 clf_filename, headers = urllib.request.urlretrieve(model_url, filename = "text_clf.pickle")
 
 
