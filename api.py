@@ -4,6 +4,8 @@ from flask import Flask, jsonify, request, redirect, url_for, render_template
 from github import Github
 import pickle
 
+# ***** THIS IS A TEST FOR ARGOCD  *****
+
 # References: https://www.w3cschool.cn/flask/flask_http_methods.html
 # Discussed the idea with Zhengge Tang, Chenglin Zhang
 
@@ -29,7 +31,7 @@ def predict():
     content = request.get_json(force=True)
     text = [content['text']]
     result = model.predict(text)[0]
-    return jsonify(is_american = str(result), version = version, model_date = model_date, is_updated="yes")
+    return jsonify(is_american = str(result), version = version, model_date = model_date)
 
 @app.route('/')
 def index(): 
@@ -39,7 +41,7 @@ def index():
 def success(text):
     text = [text]
     result = model.predict(text)[0]
-    return jsonify(is_american = int(result), version = version, model_date = model_date, is_updated="yes")
+    return jsonify(is_american = int(result), version = version, model_date = model_date)
 
 @app.route('/api/submit', methods=['POST', 'GET'])
 def input_text():
