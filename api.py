@@ -39,7 +39,7 @@ def index():
 def success(text):
     text = [text]
     result = model.predict(text)[0]
-    return jsonify(is_american = int(result), version = version, model_date = model_date)
+    return jsonify(is_american = int(result), version = version, model_date = model_date, is_updated="yes")
 
 @app.route('/api/submit', methods=['POST', 'GET'])
 def input_text():
