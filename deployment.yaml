@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: us-predictor
-        image: quay.io/christal09/us-predictor:0.9
+        image: quay.io/christal09/us-predictor:test1
         ports:
         - containerPort: 5006
