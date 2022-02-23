@@ -29,7 +29,7 @@ def predict():
     content = request.get_json(force=True)
     text = [content['text']]
     result = model.predict(text)[0]
-    return jsonify(is_american = str(result), version = version, model_date = model_date)
+    return jsonify(is_american = str(result), version = version, model_date = model_date, is_updated="yes")
 
 @app.route('/')
 def index(): 
