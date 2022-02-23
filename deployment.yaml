@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   name: us-predictor-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: api
@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
       - name: us-predictor
-        image: quay.io/christal09/us-predictor:0.8
+        image: quay.io/christal09/us-predictor:0.9
         ports:
         - containerPort: 5006
