@@ -14,4 +14,4 @@ COPY api.py /app0
 
 # COPY ./model/text_clf.pickle ./model/text_clf.pickle 
 
-ENTRYPOINT ["flask","run","--port","5006"]
+ENTRYPOINT ["python3", "api.py"]
