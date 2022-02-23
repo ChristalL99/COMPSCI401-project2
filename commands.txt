@@ -1,0 +1,79 @@
+/** Export the flask app
+export FLASK_APP=api
+
+/** Export the flask environment
+export FLASK_ENV=development
+
+/** Run the flask app
+flask run --port=5006
+
+/*** Clarification: The api.py file includes functions that allow access via a Web-based front-end. 
+ You can directly click on the link after running the above three commands ***/
+
+/** Open another terminal and run: 
+wget --server-response  --output-document response.out  --header='Content-Type: application/json'  --post-data '{"text": "#covid19 new york"}' http://127.0.0.1:5006/api/american
+/** The result is saved in the response.out file
+
+/** Build the docker image
+docker build --tag project2_lky:run0 .
+
+/** Check the docker image is successfully created
+docker images
+
+/** Make sure that the docker can be run
+docker run --publish 5006:5006 project2_lky:run0 
+
+/** Login in quay.io
+docker login quay.io
+
+/** Build the docker image on quay.io
+docker build . -t quay.io/christal09/us-predictor:0.2
+
+/** Push the docker image to quay.io
+docker push quay.io/christal09/us-predictor:0.2
+
+/** Initialize the deployment
+kubectl apply -f deployment.yaml
+
+/** Initialize the service
+kubectl apply -f service.yaml
+
+/** Check the deployment
+kubectl get deployments
+
+/** Check the services
+kubectl get services
+
+/** Send prediction requests to api.py using the given IP (expired after deleting)
+wget --server-response  --output-document response2.out  --header='Content-Type: application/json'  --post-data '{"text": "#covid19 new york"}' http://10.102.127.134:5006/api/american
+/** The resulting json is saved in response2.out
+
+/** Delete the deployment
+kubectl delete deploy us-predictor-deployment
+
+/** Delete the service
+kubectl delete service us-predictor-service
+
+/** Create ArgoCD app 
+argocd app create us-predictor \
+--repo https://github.com/ChristalL99/COMPSCI401-project2 \
+--path . --project kl328-project \
+--dest-namespace kl328 \
+--dest-server https://kubernetes.default.svc \
+--sync-policy auto
+
+/*** Further Test: Change the deployment file on Github to test whether it can synchronize successfully via UI
+
+/** kubectl get svc
+/** Service Cluster IP: 10.110.25.40
+
+/*** To update an image tag
+/** Build a new docker image on quay.io
+docker build . -t quay.io/christal09/us-predictor:test1
+
+/** Push the docker image to quay.io
+docker push quay.io/christal09/us-predictor:test1
+
+/** Test whether the system automated by ArgoCD can run successfully
+wget --server-response  --output-document response3.out  --header='Content-Type: application/json'  --post-data '{"text": "#covid19 new york"}' http://10.110.25.40:5006/api/american
+/** The resulting json is saved in response3.out
