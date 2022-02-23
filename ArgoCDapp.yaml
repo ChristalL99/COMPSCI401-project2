@@ -1,0 +1,9 @@
+project: kl328-project
+source:
+  repoURL: 'https://github.com/ChristalL99/COMPSCI401-project2'
+  path: .
+destination:
+  server: 'https://kubernetes.default.svc'
+  namespace: kl328
+syncPolicy:
+  automated: {}
