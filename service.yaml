@@ -4,9 +4,9 @@ metadata:
   name: us-predictor-service
 spec:
   selector:
-    app: us-predictor
+    app: api
   ports:
     - protocol: TCP
       port: 5006
       targetPort: 5006
-  type: LoadBalancer
+  # type: LoadBalancer
